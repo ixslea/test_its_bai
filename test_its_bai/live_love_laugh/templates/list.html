@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href='{% static "../static/css/styles.css" %}' />
+
+
+    <title>Все цитаты</title>
+
+</head>
+<body>
+    <header class="header">
+        <a class="logo" href="">Как все работает</a>
+        <div class="navigation">
+            <a href="{% url 'add' %}" class="nav-button">Добавить свою цитату</a>
+        </div>
+    </header>
+
+    <main class="page-wrapper">
+        <div class="left-bg"></div>
+        <div class="quotes-list">
+            {% for quote in quotes %}
+            <div class="quote-card">
+                <blockquote class="quote-text">
+                    "{{ quote.text }}"
+                </blockquote>
+                <div class="quote-meta">
+                    <span class="quote-author">{{ quote.author }}</span>
+                    <span class="quote-weight">Вес: {{ quote.weight }}/5</span>
+                    <span class="quote-date">{{ quote.create_date|date:"d.m.Y H:i" }}</span>
+                </div>
+            </div>
+            {% empty %}
+            <p class="no-quotes">Пока нет сохранённых цитат.</p>
+            {% endfor %}
+        </div>
+        <div class="right-bg"></div>
+    </main>
+
+   <footer class="footer">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 col-xxl-10">
+            <section class="question-phrase">
+                <h4>вопросы есть лол?</h4>
+            </section>
+        </div>
+    </footer>
+</body>
+</html>
