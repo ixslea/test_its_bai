@@ -35,6 +35,8 @@
                     <span class="quote-author">{{ quote.author }}</span>
                     <span class="quote-weight">Вес: {{ quote.weight }}/5</span>
                     <span class="quote-date">{{ quote.create_date|date:"d.m.Y H:i" }}</span>
+                    <span class="quote-date">{{ quote.source }}</span>
+                    <span class="quote-date">{{ quote.likes }}</span>
                 </div>
             </div>
             {% empty %}

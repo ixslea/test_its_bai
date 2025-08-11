@@ -67,9 +67,10 @@ html, body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  border: 5px solid var(--accent);
+  min-height: 100vh; 
+  box-sizing: border-box;
 }
-
-
 
 a {
   color: inherit;
@@ -85,6 +86,7 @@ a:hover {
   display: flex;
   align-items: center;
   padding: 1rem 2rem;
+  
 }
 
 .logo {
@@ -140,6 +142,13 @@ a:hover {
     font-family: var(--font-cursive);
     font-size: var(--font-lg);
     margin-bottom: var(--space-sm);
+}
+
+.quote-author {
+    font-family: var(--font-cursive);
+    font-size: var(--font-sm);
+    margin-bottom: var(--space-sm);
+    color: var(--secondary);
 }
 
 .details-quote-button {
@@ -257,5 +266,26 @@ a:hover {
         gap: 1rem;
    }
     
-   
+  .like-button {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.heart-icon {
+    font-size: 1.2rem;
+    color: var(--primary); 
+    transition: all 0.3s ease;
+}
+
+.like-button:hover .heart-icon {
+    color: var(--accent); 
+    transform: scale(1.1);
+}
+
+.ri-heart-3-fill {
+    color: var(--accent);  
+}
 }

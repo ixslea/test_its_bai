@@ -9,12 +9,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
     
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
     <link rel="stylesheet" href='{% static "../static/css/styles.css" %}' />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src='{% static "../static/scripts/main.js" %}'></script>
 
     <title>quotes by ixslea</title>
 </head>
 <body>
-
+    {% csrf_token %}
     
     <header class="header">
         <a class="logo" href="">Как все работает</a>
@@ -34,14 +38,20 @@
                 <div class="col-lg-4 single-block aos-init aos-animate" data-aos="fade-up">
                     <div class="quote-block">
                         <div class="quote-text">
-                            <p>quote lol</p>
+                            <p>{{quote.text}}</p>
+                            <div class="quote-author">
+                                <p>{{quote.source}}</p>
+                            </div>
+                        </div>
+                        <div class="quote-actions">
+                            <button class="like-button" data-quote-id="{{quote.id}}">
+                                <i class="heart-icon {% if is_liked %}ri-heart-3-fill{% else %}ri-heart-3-line{% endif %}"></i>
+                            </button>
                         </div>
                         <a class="details-quote-button">
                             детали лол
                         </a>
                     </div>
-
-
                 </div>
             </div>
         </div>

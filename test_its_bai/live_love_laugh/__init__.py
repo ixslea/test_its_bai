@@ -1,0 +1,1 @@
+default_app_config = 'live_love_laugh.LiveLoveLaughConfig'
