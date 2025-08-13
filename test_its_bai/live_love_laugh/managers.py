@@ -16,7 +16,7 @@ class VoseManager(models.Manager):
             self._vose, self._quote_dict = cached_data
             return True
             
-        quotes = list(self.get_queryset().values('id', 'text', 'author', 'weight'))
+        quotes = list(self.get_queryset().values('id', 'text', 'author', 'weight', 'source', 'likes'))
         if not quotes:
             return False
         

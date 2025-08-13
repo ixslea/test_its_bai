@@ -31,8 +31,25 @@
     <main class="page-wrapper"> 
         <div class="left-bg"></div>
         <div class="main-content">
-            <div class="title-of-page">
-                <a>Цитата</a>
+            
+            <div class="title-of-page">         
+                <script>
+                    let container = document.querySelector(".title-of-page");
+                    async function apiFunction() {
+                        await fetch("https://api.thecatapi.com/v1/images/search")
+                            .then(res => res.json())
+                            .then((result) => {
+                                let img = document.createElement("img");
+                                img.src = result[0].url;
+                                img.classList.add('cat');
+                                container.appendChild(img);
+                            }),
+                            (error) => {
+                                console.log(error);
+                            }
+                    }
+                    apiFunction();
+                </script>
             </div>
             <div class="row">
                 <div class="col-lg-4 single-block aos-init aos-animate" data-aos="fade-up">
@@ -49,11 +66,6 @@
                                 <i class="heart-icon {% if is_liked %}ri-heart-3-fill{% else %}ri-heart-3-line{% endif %}"></i>
                             </button>
                         </div>
-                        {% if show_details_link and quote %}
-                            <a class="details-quote-button">
-                                <a href="{% url 'quote_details' quote.id %}" >узнать больше...</a> 
-                            </a>
-                        {% endif %}
                     </div>
                 </div>
             </div>

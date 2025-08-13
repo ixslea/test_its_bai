@@ -1,13 +1,22 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect
+import requests
 from .forms import QuoteForm
 from .models import Quote, Like
+from django.shortcuts import get_object_or_404
+from django.core.cache import cache
+import os
+from django.conf import settings
 
 def index(request):
     quote = Quote.objects.get_random()
-    context = {'quote': quote} if quote else {}
-    return render(request, "index.html", context)
+    if quote:
+        context = {
+                'quote': quote,
+                'show_details_link': True
+            }
+        return render(request, "index.html", context)
  
 def add(request):
     if request.method == 'POST':
@@ -17,12 +26,22 @@ def add(request):
             return redirect('quote') 
     else:
         form = QuoteForm()
-    
+           
     return render(request, 'add_quote.html', {'form': form})
 
 def list(request):
     quotes = Quote.objects.all().order_by('-create_date') 
     return render(request, 'list.html', {'quotes': quotes})
+
+def quote_details(request, quote_id):
+    quote = get_object_or_404(Quote, id=quote_id)
+    
+    context = {
+        'quote': quote,
+        'is_liked': False
+    }
+    return render(request, 'quote_details.html', context)
+
 
 @require_POST
 def like_quote(request, quote_id):

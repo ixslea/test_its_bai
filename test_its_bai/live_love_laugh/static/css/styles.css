@@ -142,13 +142,15 @@ a:hover {
     font-family: var(--font-cursive);
     font-size: var(--font-lg);
     margin-bottom: var(--space-sm);
+    font-weight: 500;
 }
 
-.quote-author {
+.quote-source {
+    color: var(--accent);
     font-family: var(--font-cursive);
     font-size: var(--font-sm);
     margin-bottom: var(--space-sm);
-    color: var(--secondary);
+    
 }
 
 .details-quote-button {
@@ -190,7 +192,13 @@ a:hover {
   font-family: var(--font-cursive);
   color: var(--primary);
 }
+.cat {
+    max-width: 50%; 
+    height: auto;
+    display: block; 
+    margin: 0 auto; 
 
+}
 .add-quote-form {
     max-width: 600px;
     margin: 0 auto;
@@ -242,8 +250,20 @@ a:hover {
     background-color: var(--secondary);
 }
 
+.errorlist li{
+    color: var(--accent);
+    font-family: var(--font-cursive);
+}
+
+
+
 
 @media (max-width: 768px) {
+
+  .cat {
+    max-height: 100%; 
+
+}
   .page-wrapper {
     grid-template-columns: 1fr;
   }

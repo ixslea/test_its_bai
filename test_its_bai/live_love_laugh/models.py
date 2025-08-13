@@ -1,10 +1,11 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.exceptions import ValidationError
 from .managers import VoseManager
 from django.contrib.auth.models import User
 
 class Quote(models.Model):
-    text = models.TextField(verbose_name="Текст цитаты")
+    text = models.TextField(verbose_name="Текст цитаты", unique=True)
     source = models.CharField(verbose_name="Источник", default="Винкс")
     weight = models.PositiveSmallIntegerField(verbose_name="Вес цитаты",
         validators=[MinValueValidator(1), MaxValueValidator(5)]
@@ -21,7 +22,7 @@ class Quote(models.Model):
 
     def __str__(self):
         return f"{self.author}: {self.text[:50]}..."
-    
+
 class Like(models.Model):
     quote = models.ForeignKey(Quote, on_delete=models.CASCADE)
     session_key = models.CharField(max_length=40)
