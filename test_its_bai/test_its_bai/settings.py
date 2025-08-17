@@ -82,25 +82,18 @@ WSGI_APPLICATION = 'test_its_bai.wsgi.app'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DATABASE'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('POSTGRES_HOST'),
-        'PORT': os.getenv('POSTGRES_PORT', '5432'),
+        'NAME': os.getenv('PGDATABASE'),
+        'USER': os.getenv('PGUSER'),
+        'PASSWORD': os.getenv('PGPASSWORD'),
+        'HOST': os.getenv('PGHOST'),
+        'PORT': os.getenv('PGPORT', 5432),
         'OPTIONS': {
-            'sslmode': 'require',
-        }
+        'sslmode': 'require',
+        },
+        'DISABLE_SERVER_SIDE_CURSORS': True,
     }
 }
 
-host = os.getenv('POSTGRES_HOST')
-try:
-    addr_info = socket.getaddrinfo(host, 5432, socket.AF_INET6)
-    ipv6_addr = addr_info[0][4][0]
-    
-    DATABASES['default']['HOST'] = ipv6_addr
-except socket.gaierror:
-    pass
 
 
 # Password validation
