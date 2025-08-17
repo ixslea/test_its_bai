@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "public": true,
+  "regions": ["iad1"],
   "builds": [
         {
             "src": "test_its_bai/wsgi.py",
