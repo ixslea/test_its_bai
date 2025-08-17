@@ -10,12 +10,16 @@
                 "maxLambdaSize": "15mb",
                 "runtime": "python3.11.3"
             }
+        },
+        {
+        "src": "live_love_laugh/static/**",
+        "use": "@vercel/static"
         }
     ],
     "routes": [
         {
         "src": "/static/(.*)",
-        "dest": "test_its_bai/static/$1"
+        "dest": "/static/$1"
         },
         {
             "src": "/(.*)",
