@@ -12,6 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <link rel="stylesheet" href='{% static "../static/css/styles.css" %}' />
+    <link rel ="icon" href='{% static "../static/images/favicon.ico" %}' type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src='{% static "../static/scripts/main.js" %}'></script>
 
@@ -21,8 +22,10 @@
     {% csrf_token %}
     
     <header class="header">
-        <a class="logo" href="">Как все работает</a>
+        <a class="logo" href="{% url 'how_to' %}">Как все работает</a>
         <div class="navigation">
+            <a href="{% url 'quote' %}" class="nav-button">Главная</a>
+            <a href="{% url 'list' %}" class="nav-button">Все цитаты</a>
             <a href="{% url 'add' %}" class="nav-button">Добавить свою цитату</a>
         </div>
     </header>
@@ -62,9 +65,18 @@
                         </div>
                         
                         <div class="quote-actions">
-                            <button class="like-button" data-quote-id="{{quote.id}}">
-                                <i class="heart-icon {% if is_liked %}ri-heart-3-fill{% else %}ri-heart-3-line{% endif %}"></i>
+                            <span class="like-count">{{ quote.likes }}</span>
+                            <button class="like-btn" data-quote-id="{{ quote.id }}">
+                                <i id=icon class="heart-icon {% if user_has_liked %}ri-heart-3-fill{% else %}ri-heart-3-line{% endif %}"></i>
                             </button>
+                            <span class="quote-views">{{ quote.views }}</span>
+                            <i class="ri-eye-line"></i> 
+                        </div>
+
+                        <div class="quote-details">
+                            <span class="quote-date">Добавлено пользователем {{quote.author}}  {{ quote.create_date|date:"d.m.Y H:i" }}</span>
+                            <br>
+                            <span class="quote-weight">Вес цитаты: {{ quote.weight }}/5</span>
                         </div>
                     </div>
                 </div>
@@ -73,10 +85,18 @@
         <div class="right-bg"></div>
     </main>
 
-    <footer class="footer">
+   <footer class="footer">
         <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 col-xxl-10">
             <section class="question-phrase">
-                <h4>вопросы есть лол?</h4>
+                <div class="tooltip-trigger">
+                <h4>задать вопрос</h4>
+                    <div class="tooltip">
+                        <div class="tooltip-content">
+                            <a href="https://github.com/ixslea" target="_blank" class="tooltip-icon ri-github-fill"></a>
+                            <a href="https://t.me/ixslea" target="_blank" class="tooltip-icon ri-telegram-fill"></a>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     </footer>

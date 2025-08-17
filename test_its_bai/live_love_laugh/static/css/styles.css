@@ -90,22 +90,22 @@ a:hover {
 }
 
 .logo {
-   margin-right: auto;
+  margin-right: auto;
 }
 
 .navigation {
-    display: flex;
-    gap: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
 }
 
 .nav-button {
-    font-size: 1rem;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    transition: all 0.3s ease;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
 }
  .nav-button:hover {
-    color: var(--accent);
+  color: var(--accent);
 }
 
 .page-wrapper {
@@ -127,30 +127,46 @@ a:hover {
   opacity: 0.5;
 }
 
+
+.how-to {
+  border-left: 3px solid var(--accent);
+  padding: var(--space-md);
+  margin-bottom: var(--space-sm);
+  transition: transform 0.3s ease;
+}
+
+.how-to:hover {
+  transform: translateY(-5px);
+}
+
 .quote-block {
-    border-left: 3px solid var(--accent);
-    padding: var(--space-md);
-    margin-bottom: var(--space-sm);
-    transition: transform 0.3s ease;
+  border-left: 3px solid var(--accent);
+  padding: var(--space-md);
+  margin-bottom: var(--space-sm);
+  transition: transform 0.3s ease;
 }
 
 .quote-block:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .quote-text {
-    font-family: var(--font-cursive);
-    font-size: var(--font-lg);
-    margin-bottom: var(--space-sm);
-    font-weight: 500;
+  font-family: var(--font-cursive);
+  font-size: var(--font-lg);
+  margin-bottom: var(--space-sm);
+  font-weight: 500;
 }
 
 .quote-source {
-    color: var(--accent);
-    font-family: var(--font-cursive);
-    font-size: var(--font-sm);
-    margin-bottom: var(--space-sm);
+  color: var(--accent);
+  font-family: var(--font-cursive);
+  font-size: var(--font-sm);
+  margin-bottom: var(--space-sm);
     
+}
+
+.quote-views .ri-eye-line {
+  padding-top: 50%;
 }
 
 .details-quote-button {
@@ -193,73 +209,333 @@ a:hover {
   color: var(--primary);
 }
 .cat {
-    max-width: 50%; 
-    height: auto;
-    display: block; 
-    margin: 0 auto; 
+  max-width: 50%; 
+  height: auto;
+  display: block; 
+  margin: 0 auto; 
 
 }
 .add-quote-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    font-family: "Libertinus Serif", serif;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-family: "Libertinus Serif", serif;
 }
 
 .form-group input[type="text"],
 .form-group input[type="number"],
 .form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-family: "Libertinus Serif", serif;
-    font-size: 1rem;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: "Libertinus Serif", serif;
+  font-size: 1rem;
 }
 
 .form-group textarea {
-    min-height: 100px;
-    resize: vertical;
+  min-height: 100px;
+  resize: vertical;
 }
 
 .form-group input[type="number"] {
-    width: 80px;
+  width: 80px;
 }
 
 .submit-button {
-    background-color: var(--accent);
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  background-color: var(--accent);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
-    background-color: var(--secondary);
+  background-color: var(--secondary);
 }
 
 .errorlist li{
-    color: var(--accent);
-    font-family: var(--font-cursive);
+  color: var(--accent);
+  font-family: var(--font-cursive);
+}
+
+.filter-tab {
+  position: fixed;
+  left: 0;
+  top: 30%;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+.filter-tab-button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 1rem 0.5rem;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+.filter-panel {
+  position: fixed;
+  left: -300px;
+  top: 0;
+  width: 280px;
+  height: 100vh;
+  background: white;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  padding: 1rem;
+  transition: left 0.3s ease;
+  z-index: 99;
+  overflow-y: auto;
+}
+.filter-panel.active {
+  left: 0;
+    padding: 2.2rem;
+}
+.close-filter {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  padding: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.filter-group {
+  margin-bottom: 1.5rem;
+}
+.filter-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.filter-option {
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.filter-option:hover {
+  background: #f5f5f5;
+}
+.filter-option.active {
+  background: var(--accent);
+  color: white;
+}
+.filter-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.apply-filters, .reset-filters {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 1;
+}
+.apply-filters {
+  background: var(--accent);
+  color: white;
+}
+.reset-filters {
+  background: #f5f5f5;
+  color: #333;
+}
+.quotes-count {
+  margin-bottom: 1rem;
+  font-style: italic;
+  color: #666;
+}
+
+.filter-notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: opacity 0.5s ease;
+}
+
+.filter-notification.error {
+  background-color: #ff4444;
+}
+
+.filter-notification.success {
+  background-color: #00C851;
 }
 
 
+.notification {
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  max-width: 300px;
+}
+
+.notification.success {
+  border-left: 4px solid #4CAF50;
+  color: #2E7D32;
+}
+
+.notification.error {
+  border-left: 4px solid #F44336;
+  color: #C62828;
+}
+
+.notification i {
+  font-size: 1.2rem;
+}
+
+.quote-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.quote-views {
+  font-size: 0.9rem;
+}
+
+.ri-eye-line {
+  font-size: 1.2rem;
+}
+.like-count{
+font-size: 0.9rem;
+}
+.like-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.heart-icon {
+  font-size: 1.2rem;
+  color: var(--primary); 
+  transition: all 0.3s ease;
+}
+
+.ri-heart-3-line {
+  color: var(--primary);
+}
+
+.ri-heart-3-fill {
+  color: var(--accent);
+  fill: var(--accent); 
+}
+
+.like-btn:hover .heart-icon {
+  transform: scale(1.1);
+}
+
+.like-btn:active .heart-icon {
+  transform: scale(0.9);
+}
+
+.quote-details {
+  font-family: var(--font-cursive);
+}
+
+.tooltip-trigger {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background: var(--bg);
+  opacity: 0;
+  color: #cedfe9;
+  font-size: 0.875rem;
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none; 
+  min-width: 120px;
+  text-align: center;
+}
+
+.tooltip-trigger:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto; 
+}
+
+.tooltip:before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #29343d;
+}
+
+.tooltip-content {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.tooltip-icon {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.tooltip-icon:hover {
+  transform: scale(1.5);
+}
+
+.ri-github-fill {
+  color: var(--primary);
+  transform: scale(1.5);
+}
+
+.ri-telegram-fill {
+  color: var(--secondary);
+  transform: scale(1.5);
+}
 
 
 @media (max-width: 768px) {
-
   .cat {
     max-height: 100%; 
 
@@ -286,26 +562,5 @@ a:hover {
         gap: 1rem;
    }
     
-  .like-button {
-    background: transparent;
-    border: none;
-    outline: none;
-    padding: 0;
-    cursor: pointer;
-}
-
-.heart-icon {
-    font-size: 1.2rem;
-    color: var(--primary); 
-    transition: all 0.3s ease;
-}
-
-.like-button:hover .heart-icon {
-    color: var(--accent); 
-    transform: scale(1.1);
-}
-
-.ri-heart-3-fill {
-    color: var(--accent);  
-}
+  
 }

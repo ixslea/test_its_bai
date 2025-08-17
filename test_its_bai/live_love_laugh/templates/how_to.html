@@ -11,7 +11,6 @@
     
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel ="icon" href='{% static "../static/images/favicon.ico" %}' type="image/x-icon">
-
     <link rel="stylesheet" href='{% static "../static/css/styles.css" %}' />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src='{% static "../static/scripts/main.js" %}'></script>
@@ -19,10 +18,9 @@
     <title>пикми цитатник</title>
 </head>
 <body>
-    {% csrf_token %}
     
     <header class="header">
-        <a class="logo" href="{% url 'how_to' %}">Как все работает</a>
+        <a class="logo" href="{% url 'quote' %}">Главная</a>
         <div class="navigation">
             <a href="{% url 'list' %}" class="nav-button">Все цитаты</a>
             <a href="{% url 'add' %}" class="nav-button">Добавить свою цитату</a>
@@ -34,35 +32,24 @@
         <div class="left-bg"></div>
         <div class="main-content">
             <div class="title-of-page">
-                <a>Цитата</a>
+                <a>Как все работает</a>
             </div>
             <div class="row">
                 <div class="col-lg-4 single-block aos-init aos-animate" data-aos="fade-up">
-                    <div class="quote-block">
-                        <div class="quote-text">
-                            <span>{{quote.text}}</span>
-                            <div class="quote-source">
-                                <p>{{quote.source}}</p>
-                            </div>
-                        </div>
-                        
-                        <button class="like-btn" data-quote-id="{{ quote.id }}">
-                            <span class="like-count">{{ quote.likes }}</span>
-                            <i id=icon class="heart-icon {% if user_has_liked %}ri-heart-3-fill{% else %}ri-heart-3-line{% endif %}"></i>
-                        </button>
-                        {% if show_details_link and quote %}
-                            <a class="details-quote-button">
-                                <a href="{% url 'quote_details' quote.id %}" >узнать больше...</a> 
-                            </a>
-                        {% endif %}
-                    </div>
+                     <div class="how-to">	&#128140; На главной странице можно увидеть рандомную цитату, которая выбирается <a href="https://www.keithschwarz.com/darts-dice-coins/">алгоритмом</a> на основе веса цитаты: чем больше вес, тем вероятнее цитата будет выбрана. </div>
+                </div>
+                <div class="col-lg-4 single-block aos-init aos-animate" data-aos="fade-up">
+                    <div class="how-to"> 	&#128133; Нажав кнопку "Все цитаты" можно посмотреть список всех цитат, отсортировать по Топ-10 лайкам или просмотрам. Также можно отфильтровать по источнику цитаты. </div>
+                </div>
+                <div class="col-lg-4 single-block aos-init aos-animate" data-aos="fade-up">
+                    <div class="how-to"> &#9997; Нажав кнопку "Добавить свою цитату" можно перейти к форме для добавления своей цитаты. Настроена проверка на то, была ли уже добавлена новость или нет, также нельзя добавлять более 3-х цитат из одного источника. </div>
                 </div>
             </div>
         </div>
         <div class="right-bg"></div>
     </main>
 
-   <footer class="footer">
+    <footer class="footer">
         <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 col-xxl-10">
             <section class="question-phrase">
                 <div class="tooltip-trigger">

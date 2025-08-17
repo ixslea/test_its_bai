@@ -10,18 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href='{% static "../static/css/styles.css" %}' />
+    <link rel ="icon" href='{% static "../static/images/favicon.ico" %}' type="image/x-icon">
 
     <title>добавить новую пикми цитату</title>
 </head>
 <body>
 
     <header class="header">
-        <a class="logo" href="">Как все работает</a>
+        <a class="logo" href="{% url 'how_to' %}">Как все работает</a>
         <div class="navigation">
             <a href="{% url 'quote' %}" class="nav-button">Главная</a>
+            <a href="{% url 'list' %}" class="nav-button">Все цитаты</a>
         </div>
     </header>
-
     <main class="page-wrapper"> 
         <div class="left-bg"></div>
         <div class="main-content">
@@ -53,7 +54,7 @@
                         {{ form.author.errors }}
                     </div>
                     
-                    <button type="submit" class="submit-button">Добавить цитату</button>
+                    <button type="submit" class="submit-button" onclick="submitQuote()">Добавить цитату</button>
                 </form>
             </div>
         </div>
@@ -64,7 +65,15 @@
     <footer class="footer">
         <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 col-xxl-10">
             <section class="question-phrase">
-                <h4>вопросы есть лол?</h4>
+                <div class="tooltip-trigger">
+                <h4>задать вопрос</h4>
+                    <div class="tooltip">
+                        <div class="tooltip-content">
+                            <a href="https://github.com/ixslea" target="_blank" class="tooltip-icon ri-github-fill"></a>
+                            <a href="https://t.me/ixslea" target="_blank" class="tooltip-icon ri-telegram-fill"></a>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     </footer>

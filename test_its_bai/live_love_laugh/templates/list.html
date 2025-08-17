@@ -8,7 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
-    
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel ="icon" href='{% static "../static/images/favicon.ico" %}' type="image/x-icon">
+
     <link rel="stylesheet" href='{% static "../static/css/styles.css" %}' />
 
 
@@ -17,8 +19,9 @@
 </head>
 <body>
     <header class="header">
-        <a class="logo" href="">Как все работает</a>
+        <a class="logo" href="{% url 'how_to' %}">Как все работает</a>
         <div class="navigation">
+            <a href="{% url 'quote' %}" class="nav-button">Главная</a>
             <a href="{% url 'add' %}" class="nav-button">Добавить свою цитату</a>
         </div>
     </header>
@@ -26,17 +29,63 @@
     <main class="page-wrapper">
         <div class="left-bg"></div>
         <div class="quotes-list">
+
+            <div class="filter-tab">
+        <button class="filter-tab-button" onclick="toggleFilterPanel()">Фильтры</button>
+    </div>
+    
+    <div class="filter-panel" id="filterPanel">
+        <button class="close-filter" onclick="toggleFilterPanel()">×</button>
+        <h3>Фильтры</h3>
+        
+        <form method="get" id="filterForm">
+            <div class="filter-group">
+                <div class="filter-title">Источник</div>
+                <select name="source" class="source-select">
+                    <option value="">Все источники</option>
+                    {% for source in sources %}
+                        <option value="{{ source }}" {% if source == current_source %}selected{% endif %}>
+                            {{ source }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <div class="filter-title">Сортировка</div>
+                <div class="filter-option {% if not show_top %}active{% endif %}" onclick="selectOption(this, 'sort', '')">
+                    По дате добавления
+                </div>
+                <div class="filter-option {% if show_top %}active{% endif %}" onclick="selectOption(this, 'top_likes', '1')">
+                    Топ-10 по лайкам
+                </div>
+                <input type="hidden" name="top_likes" id="top_likes" value="{% if show_top %}1{% endif %}">
+                <div class="filter-option {% if show_top_views %}active{% endif %}" onclick="selectOption(this, 'top_views', '1')">
+                    Топ-10 по просмотрам
+                </div>
+                <input type="hidden" name="top_views" id="top_views" value="{% if show_top_views %}1{% endif %}">
+            </div>
+            
+             <div class="filter-actions">
+                <button type="submit" class="apply-filters">Применить</button>
+                <button type="button" class="reset-filters" onclick="resetFilters()">Сбросить</button>
+            </div>
+        </form>
+    </div>
+
+        {% if not show_top and not current_source and not show_top_views%}
+                <div class="quotes-count">Всего цитат: {{ quotes_count }}</div>
+            {% endif %}
+
             {% for quote in quotes %}
             <div class="quote-card">
                 <blockquote class="quote-text">
-                    "{{ quote.text }}"
+                  <a href="{% url 'quote_details' quote.id %}" > {{quote.text}}</a> 
                 </blockquote>
                 <div class="quote-meta">
-                    <span class="quote-author">{{ quote.author }}</span>
-                    <span class="quote-weight">Вес: {{ quote.weight }}/5</span>
-                    <span class="quote-date">{{ quote.create_date|date:"d.m.Y H:i" }}</span>
-                    <span class="quote-date">{{ quote.source }}</span>
-                    <span class="quote-date">{{ quote.likes }}</span>
+                    <span class="quote-source">{{ quote.source }}</span>
+                    <span class="like-count heart-icon ri-heart-3-fill">{{ quote.likes }}</span>
+                    <span class="quote-views ri-eye-line"> {{ quote.views }}</span>
                 </div>
             </div>
             {% empty %}
@@ -49,9 +98,60 @@
    <footer class="footer">
         <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 col-xxl-10">
             <section class="question-phrase">
-                <h4>вопросы есть лол?</h4>
+                <div class="tooltip-trigger">
+                <h4>задать вопрос</h4>
+                    <div class="tooltip">
+                        <div class="tooltip-content">
+                            <a href="https://github.com/ixslea" target="_blank" class="tooltip-icon ri-github-fill"></a>
+                            <a href="https://t.me/ixslea" target="_blank" class="tooltip-icon ri-telegram-fill"></a>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     </footer>
+
+<script>
+        function toggleFilterPanel() {
+            const panel = document.getElementById('filterPanel');
+            panel.classList.toggle('active');
+        }
+        
+        function selectOption(element, name, value) {
+            // Удаляем active у всех элементов в группе
+            const group = element.parentElement;
+            const options = group.querySelectorAll('.filter-option');
+            options.forEach(opt => opt.classList.remove('active'));
+            
+            // Добавляем active к выбранному элементу
+            element.classList.add('active');
+            
+            // Обновляем значение скрытого поля
+            if (name === 'top_likes') {
+                document.getElementById('top_likes').value = value;
+            }
+
+            if (name === 'top_views') {
+                document.getElementById('top_views').value = value;
+            }
+
+        }
+        
+        function resetFilters() {
+            // Сбрасываем select
+            document.querySelector('.source-select').value = '';
+            
+            // Сбрасываем сортировку
+            const sortOptions = document.querySelectorAll('.filter-group .filter-option');
+            sortOptions.forEach(opt => opt.classList.remove('active'));
+            sortOptions[0].classList.add('active');
+            document.getElementById('top_likes').value = '';
+            document.getElementById('top_views').value = '';
+            
+            // Отправляем форму
+            document.getElementById('filterForm').submit();
+        }
+    </script>
+
 </body>
 </html>
