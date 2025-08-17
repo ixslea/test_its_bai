@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from libsql_client import create_client
+import socket
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -92,6 +93,14 @@ DATABASES = {
     }
 }
 
+host = os.getenv('POSTGRES_HOST')
+try:
+    addr_info = socket.getaddrinfo(host, 5432, socket.AF_INET6)
+    ipv6_addr = addr_info[0][4][0]
+    
+    DATABASES['default']['HOST'] = ipv6_addr
+except socket.gaierror:
+    pass
 
 
 # Password validation
