@@ -27,11 +27,13 @@ SECRET_KEY = 'django-insecure-x#&u5wj%v=6f6(76)csqqy4v#_c3@%r+9)l*hy9ax(fapwjxq!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', '.now.sh']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+CSRF_TRUSTED_ORIGINS = ["https://api-project-name.com", "https://*.127.0.0.1"]
 
 # Application definition
 
 INSTALLED_APPS = [
+    "whitenoise.runserver_nostatic",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'test_its_bai.urls'
@@ -68,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'test_its_bai.wsgi.application'
+WSGI_APPLICATION = 'test_its_bai.wsgi.app'
 
 
 # Database
