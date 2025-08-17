@@ -73,12 +73,16 @@ WSGI_APPLICATION = 'test_its_bai.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.getenv('TURSO_DB_URL')+"?authToken="+os.getenv('TURSO_AUTH_TOKEN')
+        }
     }
-}
+
 
 
 # Password validation
