@@ -25,5 +25,10 @@
             "src": "/(.*)",
             "dest": "test_its_bai/wsgi.py"
         }
-    ]
+    ],
+    "build": {
+        "env": {
+            "NPM_RUN_BUILD": "python manage.py collectstatic --noinput"
+        }
+    }
 }
