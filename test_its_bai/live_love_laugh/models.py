@@ -30,7 +30,7 @@ class Quote(models.Model):
         """
         if not session_key:
             return False
-        return self.total_likes.filter(session_key=session_key).exists()
+        return self.likes.filter(session_key=session_key).exists()
 
 
     @classmethod
