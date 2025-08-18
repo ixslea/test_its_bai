@@ -13,7 +13,6 @@
     <link rel ="icon" href='{% static "../static/images/favicon.ico" %}' type="image/x-icon">
 
     <link rel="stylesheet" href='{% static "../static/css/styles.css" %}' />
-    <script src='{% static "../static/scripts/filters.js" %}' defer></script>
 
 
     <title>Все цитаты</title>
@@ -31,61 +30,62 @@
     <main class="page-wrapper">
         <div class="left-bg"></div>
         <div class="quotes-list">
-            <div class="filter-tab">
-                <button class="filter-tab-button">Фильтры</button>
-            </div>
-    
-            <div class="filter-panel" id="filterPanel">
-                <button class="close-filter">×</button>
-                <h3>Фильтры</h3>
-            
-                <form method="get" id="filterForm">
-                    <div class="filter-group">
-                        <div class="filter-title">Источник</div>
-                        <select name="source" class="source-select">
-                            <option value="">Все источники</option>
-                            {% for source in sources %}
-                            <option value="{{ source }}" {% if source == current_source %}selected{% endif %}>
-                                {{ source }}
-                            </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                
-                    <div class="filter-group">
-                        <div class="filter-title">Сортировка</div>
-                        <div class="filter-option {% if not show_top %}active{% endif %}">
-                            По дате добавления
-                        </div>
-                        <div class="filter-option {% if show_top %}active{% endif %}">
-                            Топ-10 по лайкам
-                        </div>
-                        <input type="hidden" name="top_likes" id="top_likes" value="{% if show_top %}1{% endif %}">
-                        <div class="filter-option {% if show_top_views %}active{% endif %}">
-                            Топ-10 по просмотрам
-                        </div>
-                        <input type="hidden" name="top_views" id="top_views" value="{% if show_top_views %}1{% endif %}">
-                    </div>
-                
-                    <div class="filter-actions">
-                        <button type="submit" class="apply-filters">Применить</button>
-                        <button type="button" class="reset-filters">Сбросить</button>
-                    </div>
-                </form>
-            </div>
 
-            {% if not show_top and not current_source and not show_top_views%}
+            <div class="filter-tab">
+        <button class="filter-tab-button" onclick="toggleFilterPanel()">Фильтры</button>
+    </div>
+    
+    <div class="filter-panel" id="filterPanel">
+        <button class="close-filter" onclick="toggleFilterPanel()">×</button>
+        <h3>Фильтры</h3>
+        
+        <form method="get" id="filterForm">
+            <div class="filter-group">
+                <div class="filter-title">Источник</div>
+                <select name="source" class="source-select">
+                    <option value="">Все источники</option>
+                    {% for source in sources %}
+                        <option value="{{ source }}" {% if source == current_source %}selected{% endif %}>
+                            {{ source }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <div class="filter-title">Сортировка</div>
+                <div class="filter-option {% if not show_top %}active{% endif %}" onclick="selectOption(this, 'sort', '')">
+                    По дате добавления
+                </div>
+                <div class="filter-option {% if show_top %}active{% endif %}" onclick="selectOption(this, 'top_likes', '1')">
+                    Топ-10 по лайкам
+                </div>
+                <input type="hidden" name="top_likes" id="top_likes" value="{% if show_top %}1{% endif %}">
+                <div class="filter-option {% if show_top_views %}active{% endif %}" onclick="selectOption(this, 'top_views', '1')">
+                    Топ-10 по просмотрам
+                </div>
+                <input type="hidden" name="top_views" id="top_views" value="{% if show_top_views %}1{% endif %}">
+            </div>
+            
+             <div class="filter-actions">
+                <button type="submit" class="apply-filters">Применить</button>
+                <button type="button" class="reset-filters" onclick="resetFilters()">Сбросить</button>
+            </div>
+        </form>
+    </div>
+
+        {% if not show_top and not current_source and not show_top_views%}
                 <div class="quotes-count">Всего цитат: {{ quotes_count }}</div>
             {% endif %}
 
             {% for quote in quotes %}
             <div class="quote-card">
                 <blockquote class="quote-text">
-                    <a href="{% url 'quote_details' quote.id %}" > {{quote.text}}</a> 
+                  <a href="{% url 'quote_details' quote.id %}" > {{quote.text}}</a> 
                 </blockquote>
                 <div class="quote-meta">
                     <span class="quote-source">{{ quote.source }}</span>
-                    <span class="like-count heart-icon ri-heart-3-fill">{{ quote.total_likes }}</span>
+                    <span class="like-count heart-icon ri-heart-3-fill">{{ quote.likes }}</span>
                     <span class="quote-views ri-eye-line"> {{ quote.views }}</span>
                 </div>
             </div>
@@ -96,7 +96,7 @@
         <div class="right-bg"></div>
     </main>
 
-    <footer class="footer">
+   <footer class="footer">
         <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 col-xxl-10">
             <section class="question-phrase">
                 <div class="tooltip-trigger">
@@ -112,6 +112,41 @@
         </div>
     </footer>
 
+<script>
+        function toggleFilterPanel() {
+            const panel = document.getElementById('filterPanel');
+            panel.classList.toggle('active');
+        }
+        
+        function selectOption(element, name, value) {
+            const group = element.parentElement;
+            const options = group.querySelectorAll('.filter-option');
+            options.forEach(opt => opt.classList.remove('active'));
+            
+            element.classList.add('active');
+            
+            if (name === 'top_likes') {
+                document.getElementById('top_likes').value = value;
+            }
+
+            if (name === 'top_views') {
+                document.getElementById('top_views').value = value;
+            }
+
+        }
+        
+        function resetFilters() {
+            document.querySelector('.source-select').value = '';
+            
+            const sortOptions = document.querySelectorAll('.filter-group .filter-option');
+            sortOptions.forEach(opt => opt.classList.remove('active'));
+            sortOptions[0].classList.add('active');
+            document.getElementById('top_likes').value = '';
+            document.getElementById('top_views').value = '';
+            
+            document.getElementById('filterForm').submit();
+        }
+    </script>
 
 </body>
 </html>
