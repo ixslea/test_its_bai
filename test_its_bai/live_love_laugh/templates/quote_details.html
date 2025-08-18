@@ -17,7 +17,7 @@
     <link rel ="icon" href='{% static "../static/images/favicon.ico" %}' type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src='{% static "../static/scripts/main.js" %}'></script>
-    <link rel="preload" href='{% static "../static/scripts/cat_api.js" %}' as="image"/>
+    <script src='{% static "../static/scripts/cat_api.js" %}' defer></script>
 
 
     <title>пикми цитатник</title>
@@ -28,7 +28,6 @@
     <header class="header">
         <a class="logo" href="{% url 'how_to' %}">Как все работает</a>
         <div class="navigation">
-            <a href="{% url 'quote' %}" class="nav-button">Главная</a>
             <a href="{% url 'list' %}" class="nav-button">Все цитаты</a>
             <a href="{% url 'add' %}" class="nav-button">Добавить свою цитату</a>
         </div>
