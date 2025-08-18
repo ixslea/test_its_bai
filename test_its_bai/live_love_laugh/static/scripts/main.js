@@ -28,15 +28,15 @@ $(document).ready(function() {
              * Обработчик успешного ответа от сервера
              */
             success: function(data) {
-                    button.toggleClass('liked', data.liked);
+                    //button.toggleClass('liked', data.liked);
 
                     icon.removeClass('ri-heart-3-line ri-heart-3-fill')
                          .addClass(data.liked ? 'ri-heart-3-fill' : 'ri-heart-3-line');
                     
 
-                    if (likeCount.length) {
-                        likeCount.text(data.total_likes);
-                    }
+                    
+                    likeCount.text(data.total_likes);
+                    
                     
                     icon.css('transform', 'scale(1.2)');
                     setTimeout(() => icon.css('transform', 'scale(1)'), 300);

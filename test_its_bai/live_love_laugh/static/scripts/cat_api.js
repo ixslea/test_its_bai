@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const img = document.createElement("img");
     img.classList.add('cat');
-    img.alt = "Cat image";
     img.loading = "lazy"; 
     
     const showFallback = () => {
