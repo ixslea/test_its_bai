@@ -22,8 +22,6 @@ class Quote(models.Model):
     
     @property
     def total_likes(self):
-        if hasattr(self, '_total_likes'):
-            return self._total_likes
         return self.like_set.count()
     
     def user_has_liked(self, session_key):
