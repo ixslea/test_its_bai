@@ -209,4 +209,3 @@ __marimo__/
 .sqlite3
 .sql
 __pycache__
-staticfiles/

@@ -22,6 +22,8 @@ class Quote(models.Model):
     
     @property
     def total_likes(self):
+        if hasattr(self, '_total_likes'):
+            return self._total_likes
         return self.like_set.count()
     
     def user_has_liked(self, session_key):
@@ -30,7 +32,7 @@ class Quote(models.Model):
         """
         if not session_key:
             return False
-        return self.likes.filter(session_key=session_key).exists()
+        return self.like_set.filter(session_key=session_key).exists()
 
 
     @classmethod
@@ -51,7 +53,7 @@ class Like(models.Model):
 
     3 свойства: цитата, session key, дата создания (авто)
     """
-    quote = models.ForeignKey(Quote, on_delete=models.CASCADE, related_name='likes')
+    quote = models.ForeignKey(Quote, on_delete=models.CASCADE)
     session_key = models.CharField(max_length=40)
     created_at = models.DateTimeField(auto_now_add=True)
 

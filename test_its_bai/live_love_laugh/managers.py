@@ -33,7 +33,7 @@ class VoseManager(models.Manager):
             self._vose, self._quote_dict = cached_data
             return True
             
-        quotes = list(self.get_queryset().annotate(total_likes=models.Count('likes')).values('id', 'text', 'author', 'weight', 'source', 'total_likes'))
+        quotes = list(self.get_queryset().values('id', 'text', 'author', 'weight', 'source', '_total_likes'))
         if not quotes:
             return False
         
