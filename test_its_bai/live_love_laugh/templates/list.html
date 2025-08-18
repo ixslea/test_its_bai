@@ -32,11 +32,11 @@
         <div class="left-bg"></div>
         <div class="quotes-list">
             <div class="filter-tab">
-                <button class="filter-tab-button" onclick="toggleFilterPanel()">Фильтры</button>
+                <button class="filter-tab-button">Фильтры</button>
             </div>
     
             <div class="filter-panel" id="filterPanel">
-                <button class="close-filter" onclick="toggleFilterPanel()">×</button>
+                <button class="close-filter">×</button>
                 <h3>Фильтры</h3>
             
                 <form method="get" id="filterForm">
@@ -54,14 +54,14 @@
                 
                     <div class="filter-group">
                         <div class="filter-title">Сортировка</div>
-                        <div class="filter-option {% if not show_top %}active{% endif %}" onclick="selectOption(this, 'sort', '')">
+                        <div class="filter-option {% if not show_top %}active{% endif %}">
                             По дате добавления
                         </div>
-                        <div class="filter-option {% if show_top %}active{% endif %}" onclick="selectOption(this, 'top_likes', '1')">
+                        <div class="filter-option {% if show_top %}active{% endif %}">
                             Топ-10 по лайкам
                         </div>
                         <input type="hidden" name="top_likes" id="top_likes" value="{% if show_top %}1{% endif %}">
-                        <div class="filter-option {% if show_top_views %}active{% endif %}" onclick="selectOption(this, 'top_views', '1')">
+                        <div class="filter-option {% if show_top_views %}active{% endif %}">
                             Топ-10 по просмотрам
                         </div>
                         <input type="hidden" name="top_views" id="top_views" value="{% if show_top_views %}1{% endif %}">
@@ -69,7 +69,7 @@
                 
                     <div class="filter-actions">
                         <button type="submit" class="apply-filters">Применить</button>
-                        <button type="button" class="reset-filters" onclick="resetFilters()">Сбросить</button>
+                        <button type="button" class="reset-filters">Сбросить</button>
                     </div>
                 </form>
             </div>
