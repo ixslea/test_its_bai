@@ -67,7 +67,7 @@ def list(request):
         quotes = quotes.filter(source__iexact=source_filter)
     
     if top_likes:
-        quotes = quotes.order_by('-total_likes')[:10] 
+        quotes = quotes.order_by('-likes')[:10] 
         show_top = True
         show_top_views = False
     elif top_views:

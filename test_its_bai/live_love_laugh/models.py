@@ -14,6 +14,7 @@ class Quote(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(5)]
                                           )
     author = models.CharField(verbose_name="Ваше имя", default="ixslea")
+    likes = models.PositiveIntegerField(default=0)
     create_date = models.DateTimeField(auto_now_add=True)
     views = models.PositiveIntegerField(default=0, verbose_name="Количество просмотров")
 
