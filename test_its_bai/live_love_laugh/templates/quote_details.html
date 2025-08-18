@@ -7,6 +7,8 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.thecatapi.com">
+    <link rel="preload" href='{% static "images/fallback-cat.jpg" %}' as="image">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
     
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -15,6 +17,7 @@
     <link rel ="icon" href='{% static "../static/images/favicon.ico" %}' type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src='{% static "../static/scripts/main.js" %}'></script>
+
 
     <title>пикми цитатник</title>
 </head>
@@ -30,30 +33,11 @@
         </div>
     </header>
 
-
     <main class="page-wrapper"> 
         <div class="left-bg"></div>
         <div class="main-content">
             
-            <div class="title-of-page">         
-                <script>
-                    let container = document.querySelector(".title-of-page");
-                    async function apiFunction() {
-                        await fetch("https://api.thecatapi.com/v1/images/search")
-                            .then(res => res.json())
-                            .then((result) => {
-                                let img = document.createElement("img");
-                                img.src = result[0].url;
-                                img.classList.add('cat');
-                                container.appendChild(img);
-                            }),
-                            (error) => {
-                                console.log(error);
-                            }
-                    }
-                    apiFunction();
-                </script>
-            </div>
+            <div class="title-of-page"></div>
             <div class="row">
                 <div class="col-lg-4 single-block aos-init aos-animate" data-aos="fade-up">
                     <div class="quote-block">
@@ -65,7 +49,7 @@
                         </div>
                         
                         <div class="quote-actions">
-                            <span class="like-count">{{ quote.likes }}</span>
+                            <span class="like-count">{{ quote.total_likes }}</span>
                             <button class="like-btn" data-quote-id="{{ quote.id }}">
                                 <i id=icon class="heart-icon {% if user_has_liked %}ri-heart-3-fill{% else %}ri-heart-3-line{% endif %}"></i>
                             </button>
@@ -81,7 +65,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
         <div class="right-bg"></div>
     </main>
 
@@ -101,6 +85,6 @@
         </div>
     </footer>
 
-
+    <script src='{% static "../static/scripts/cat_api.js" %}'></script>
 </body>
 </html>

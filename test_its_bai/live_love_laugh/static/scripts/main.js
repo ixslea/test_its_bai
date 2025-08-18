@@ -1,4 +1,14 @@
+/**
+ * Обработчик лайков
+ * 
+ * 
+ * 
+ */
+
 $(document).ready(function() {
+    /**
+     * Обработчик клика по кнопке лайка
+     */
     $('.like-btn').click(function() {
         const button = $(this);
         const quoteId = button.data('quote-id');
@@ -14,20 +24,20 @@ $(document).ready(function() {
             data: {
                 'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
             },
+            /**
+             * Обработчик успешного ответа от сервера
+             */
             success: function(data) {
-                    // Переключаем класс кнопки
                     button.toggleClass('liked', data.liked);
-                    
-                    // Обновляем иконку
+
                     icon.removeClass('ri-heart-3-line ri-heart-3-fill')
                          .addClass(data.liked ? 'ri-heart-3-fill' : 'ri-heart-3-line');
                     
-                    // Обновляем счетчик
+
                     if (likeCount.length) {
                         likeCount.text(data.total_likes);
                     }
                     
-                    // Анимация
                     icon.css('transform', 'scale(1.2)');
                     setTimeout(() => icon.css('transform', 'scale(1)'), 300);
                 
@@ -39,6 +49,9 @@ $(document).ready(function() {
     });
 });
 
+/**
+ * Функция для получения значения cookie по имени
+ */
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
