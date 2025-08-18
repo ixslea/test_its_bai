@@ -51,7 +51,7 @@ class Like(models.Model):
 
     3 свойства: цитата, session key, дата создания (авто)
     """
-    quote = models.ForeignKey(Quote, on_delete=models.CASCADE)
+    quote = models.ForeignKey(Quote, on_delete=models.CASCADE, related_name='likes')
     session_key = models.CharField(max_length=40)
     created_at = models.DateTimeField(auto_now_add=True)
 
