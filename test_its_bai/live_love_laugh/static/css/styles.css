@@ -614,13 +614,6 @@ font-size: 0.9rem;
     --font-xl: 3rem;
   }
 
-  .heart-icon {
-    font-size: 1.8rem; 
-  }
-
-  .like-count {
-    font-size: 1.35rem; 
-  }
 
   .quote-text {
     font-size: var(--font-lg);

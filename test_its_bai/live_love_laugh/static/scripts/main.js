@@ -1,8 +1,5 @@
 /**
- * Обработчик лайков
- * 
- * 
- * 
+ * Обработчик лайков 
  */
 
 $(document).ready(function() {
@@ -28,7 +25,7 @@ $(document).ready(function() {
              * Обработчик успешного ответа от сервера
              */
             success: function(data) {
-                    //button.toggleClass('liked', data.liked);
+                    button.toggleClass('liked', data.liked);
 
                     icon.removeClass('ri-heart-3-line ri-heart-3-fill')
                          .addClass(data.liked ? 'ri-heart-3-fill' : 'ri-heart-3-line');

@@ -17,6 +17,7 @@ def index(request):
         request.session.create()
     quote = Quote.objects.get_random()
     quoteObj = Quote.objects.get(id=quote['id'])
+    likeCount = quoteObj.like_set.count()
     if quote:
 
         Quote.increment_views_by_id(quote['id'])
