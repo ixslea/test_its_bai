@@ -49,7 +49,7 @@
                         </div>
                         
                         <div class="quote-actions">
-                            <span class="like-count">{{ quote.total_likes }}</span>
+                            <span class="like-count">{{ quote.like_set.count }}</span>
                             <button class="like-btn" data-quote-id="{{ quote.id }}">
                                 <i id=icon class="heart-icon {% if user_has_liked %}ri-heart-3-fill{% else %}ri-heart-3-line{% endif %}"></i>
                             </button>
