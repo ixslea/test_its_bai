@@ -117,8 +117,7 @@
             const panel = document.getElementById('filterPanel');
             panel.classList.toggle('active');
 
-            const sortOptions = document.querySelectorAll('.filter-group .filter-option');
-            if (sortOptions[1].contains('active') || sortOptions[2].contains('active')) {
+            if (document.getElementById('top_likes').value != '' || document.getElementById('top_likes').value != '') {
                 document.getElementById('btnApply').classList.add('hidden');
             }
         }

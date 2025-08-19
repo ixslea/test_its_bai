@@ -291,17 +291,20 @@ a:hover {
 }
 .filter-panel {
   position: fixed;
-  left: -300px;
+  left: -370px;
   top: 0;
-  width: 280px;
+  width: 350px;
   height: 100vh;
   background: white;
   box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-  padding: 2rem;
+  padding: 1rem;
   transition: left 0.3s ease;
   z-index: 99;
   overflow-y: auto;
   overflow-x: hidden;
+}
+.source-select{
+  max-width: 250px;
 }
 .filter-panel.active {
   left: 0;
