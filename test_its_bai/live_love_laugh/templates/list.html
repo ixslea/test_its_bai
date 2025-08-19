@@ -68,7 +68,7 @@
             </div>
             
              <div class="filter-actions">
-                <button type="submit" id="btnApply">Применить</button>
+                <button type="submit" id="btnApply"  class="apply-filters" onclick="applyFilters()">Применить</button>
                 <button type="button" class="reset-filters" onclick="resetFilters()">Сбросить</button>
             </div>
         </form>
@@ -152,7 +152,7 @@
             document.getElementById('top_likes').value = '';
             document.getElementById('top_views').value = '';
             
-            document.getElementById('btnApply').classList.remove('apply-filters');
+            document.getElementById('btnApply').classList.remove('.apply-filters');
             document.getElementById('btnApply').submit();
 
         }
