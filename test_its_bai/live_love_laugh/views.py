@@ -61,14 +61,15 @@ def list(request):
     quotes = Quote.objects.all()
     
     if top_likes:
-        quotes = quotes.annotate(likes_count=Count('likes'))
         
         if source_filter:
             quotes = quotes.filter(source__iexact=source_filter)
             
-        quotes = quotes.order_by('-likes_count')[:10]
+        ratings_quotes = [(q, q.total_likes) for q in quotes]  
+        quotes = sorted(ratings_quotes, key = lambda x: x[1])
         show_top = True
         show_top_views = False
+        
     elif top_views:
         quotes = Quote.objects.all()
         
