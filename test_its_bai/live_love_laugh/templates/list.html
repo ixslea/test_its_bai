@@ -118,6 +118,9 @@
             panel.classList.toggle('active');
 
             if (document.getElementById('top_likes').value != '' || document.getElementById('top_views').value != '') {
+                const sortOptions = document.querySelectorAll('.filter-group .filter-option');
+                sortOptions.forEach(opt => opt.classList.remove('active'));
+                sortOptions[0].classList.remove('active');
                 document.getElementById('btnApply').classList.add('hidden');
             }
         }
