@@ -127,10 +127,12 @@
             
             if (name === 'top_likes') {
                 document.getElementById('top_likes').value = value;
+                sortOptions[0].classList.remove('active');
             }
 
             if (name === 'top_views') {
                 document.getElementById('top_views').value = value;
+                sortOptions[0].classList.remove('active');
             }
 
         }

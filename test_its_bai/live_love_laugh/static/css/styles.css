@@ -316,6 +316,9 @@ a:hover {
   font-size: 1.5rem;
   cursor: pointer;
 }
+.source-select {
+  width: 250px;
+}
 .filter-group {
   margin-bottom: 1.5rem;
 }
@@ -613,7 +616,6 @@ font-size: 0.9rem;
     --font-lg: 1.875rem;
     --font-xl: 3rem;
   }
-
 
   .quote-text {
     font-size: var(--font-lg);

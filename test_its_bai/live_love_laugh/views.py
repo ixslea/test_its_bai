@@ -17,6 +17,7 @@ def index(request):
         request.session.create()
     quote = Quote.objects.get_random()
     quoteObj = Quote.objects.get(id=quote['id'])
+    likes = quoteObj.total_likes
     if quote:
 
         Quote.increment_views_by_id(quote['id'])
@@ -24,7 +25,8 @@ def index(request):
         context = {
                 'quote': quote,
                 'show_details_link': True,
-                'user_has_liked': quoteObj.user_has_liked(request.session.session_key)
+                'user_has_liked': quoteObj.user_has_liked(request.session.session_key),
+                'likes': likes
             }
         return render(request, "index.html", context)
 
