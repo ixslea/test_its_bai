@@ -133,8 +133,8 @@
                 document.getElementById('top_likes').value = value;
                 document.getElementById('top_views').value = '';
             } else if (name === 'top_views') {
-                document.getElementById('top_likes').value = value;
-                document.getElementById('top_views').value = '';
+                document.getElementById('top_views').value = value;
+                document.getElementById('top_likes').value = '';
             } else {
                 document.getElementById('top_likes').value = '';
                 document.getElementById('top_views').value = '';
@@ -146,20 +146,23 @@
         }    
 
         function resetFilters() {
-            
-            const baseUrl = window.location.origin + window.location.pathname;
-            window.location.href = baseUrl;
-            /*
             document.querySelector('.source-select').value = '';
-            
+    
             const sortOptions = document.querySelectorAll('.filter-group .filter-option');
             sortOptions.forEach(opt => opt.classList.remove('active'));
             sortOptions[0].classList.add('active');
+            
             document.getElementById('top_likes').value = '';
             document.getElementById('top_views').value = '';
 
             document.getElementById('btnApply').classList.remove('hidden');
-            */
+            
+            const url = new URL(window.location.href);
+            url.searchParams.delete('source');
+            url.searchParams.delete('top_likes');
+            url.searchParams.delete('top_views');
+
+            window.history.replaceState({}, '', url.toString());
 
         }
     </script>
