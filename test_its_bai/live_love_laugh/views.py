@@ -60,20 +60,31 @@ def list(request):
 
     quotes = Quote.objects.all()
     
-    if source_filter:
-        quotes = quotes.filter(source__iexact=source_filter)
-    
     if top_likes:
-        quotes = quotes.annotate(likes_count=Count('likes')).order_by('-likes_count')[:10]
-        # quotes = quotes.order_by('-likes')[:10] 
+        quotes = Quote.objects.annotate(likes_count=Count('likes'))
+        
+        if source_filter:
+            quotes = quotes.filter(source__iexact=source_filter)
+            
+        quotes = quotes.order_by('-likes_count')[:10]
         show_top = True
         show_top_views = False
     elif top_views:
-        quotes = quotes.order_by('-views')[:10] 
+        quotes = Quote.objects.all()
+        
+        if source_filter:
+            quotes = quotes.filter(source__iexact=source_filter)
+            
+        quotes = quotes.order_by('-views')[:10]
         show_top = False
         show_top_views = True
     else:
-        quotes = quotes.order_by('-create_date') 
+        quotes = Quote.objects.all()
+        
+        if source_filter:
+            quotes = quotes.filter(source__iexact=source_filter)
+            
+        quotes = quotes.order_by('-created_at')
         show_top = False
         show_top_views = False
     
