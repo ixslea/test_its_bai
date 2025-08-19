@@ -65,8 +65,9 @@ def list(request):
         if source_filter:
             quotes = quotes.filter(source__iexact=source_filter)
             
-        ratings_quotes = [(q, q.total_likes) for q in quotes]  
-        quotes = sorted(ratings_quotes, key = lambda x: x[1])
+        quotes_with_ratings = [(q, q.total_likes) for q in quotes]
+        quotes_with_ratings.sort(key=lambda x: x[1], reverse=True)
+        quotes = [q[0] for q in quotes_with_ratings[:10]]
         show_top = True
         show_top_views = False
         
