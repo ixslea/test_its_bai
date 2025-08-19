@@ -61,7 +61,7 @@ def list(request):
     quotes = Quote.objects.all()
     
     if top_likes:
-        quotes = Quote.objects.annotate(likes_count=Count('likes'))
+        quotes = quotes.annotate(likes_count=Count('likes'))
         
         if source_filter:
             quotes = quotes.filter(source__iexact=source_filter)
