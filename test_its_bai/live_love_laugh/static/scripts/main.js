@@ -10,7 +10,7 @@ $(document).ready(function() {
         const button = $(this);
         const quoteId = button.data('quote-id');
         const icon = button.find('.heart-icon');
-        const likeCount = button.find('.like-count');
+        const likeCount = document.querySelector('.like-count');
         
         $.ajax({
             url: `/like/${quoteId}/`,
@@ -26,15 +26,11 @@ $(document).ready(function() {
              */
             success: function(data) {
                     button.toggleClass('liked', data.liked);
-
                     icon.removeClass('ri-heart-3-line ri-heart-3-fill')
                          .addClass(data.liked ? 'ri-heart-3-fill' : 'ri-heart-3-line');
-                    
 
-                    
                     likeCount.text(data.total_likes);
-                    
-                    
+
                     icon.css('transform', 'scale(1.2)');
                     setTimeout(() => icon.css('transform', 'scale(1)'), 300);
                 
