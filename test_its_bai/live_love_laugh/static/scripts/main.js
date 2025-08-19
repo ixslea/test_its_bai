@@ -29,7 +29,7 @@ $(document).ready(function() {
                     icon.removeClass('ri-heart-3-line ri-heart-3-fill')
                          .addClass(data.liked ? 'ri-heart-3-fill' : 'ri-heart-3-line');
 
-                    likeCount.text(data.total_likes);
+                    likeCount.textContent(data.total_likes);
 
                     icon.css('transform', 'scale(1.2)');
                     setTimeout(() => icon.css('transform', 'scale(1)'), 300);
