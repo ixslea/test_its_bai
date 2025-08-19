@@ -291,7 +291,7 @@ a:hover {
 }
 .filter-panel {
   position: fixed;
-  left: -330px;
+  left: -350px;
   top: 0;
   width: 350px;
   height: 100vh;
