@@ -12,6 +12,7 @@ from .models import Quote, Like
 Проверяет, лайкнул ли пользователь (по session_key)
 Передает в шаблон данные о цитате
 """
+from django.db.models import Count
 def index(request):
     if not request.session.session_key:
         request.session.create()
@@ -63,7 +64,7 @@ def list(request):
         quotes = quotes.filter(source__iexact=source_filter)
     
     if top_likes:
-        quotes = sorted(Quote.objects, key=lambda t: t.total_likes)[:10] 
+        quotes = quotes.annotate(likes_count=Count('likes')).order_by('-likes_count')[:10]
         # quotes = quotes.order_by('-likes')[:10] 
         show_top = True
         show_top_views = False
