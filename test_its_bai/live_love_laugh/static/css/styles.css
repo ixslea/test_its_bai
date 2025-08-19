@@ -343,7 +343,7 @@ a:hover {
   gap: 0.5rem;
   margin-top: 1rem;
 }
-.apply-filters {
+.apply-filters.hidden {
     display: none;
 }
 .apply-filters, .reset-filters {

@@ -3,17 +3,10 @@
 */ 
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector(".title-of-page");
-    const fallbackUrl = '{% static "images/fallback-cat.jpg" %}';
-    
     const img = document.createElement("img");
     img.classList.add('cat');
-    
-    const showFallback = () => {
-        img.src = fallbackUrl;
-        container.appendChild(img);
-    };
-    
-    async function loadCatImage() {
+
+    async function fetchCatImage() {
         try {
             const response = await fetch("https://api.thecatapi.com/v1/images/search", {
                 mode: 'cors',
@@ -36,15 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     img.src = data[0].url;
                     container.appendChild(img);
                 };
-                
-                tempImg.onerror = () => {
-                    showFallback();
-                };
-                
-                setTimeout(() => {
-                    if (!img.src) showFallback();
-                }, 3000);
-                
                 return;
             }
             throw new Error('No image data received');
@@ -54,5 +38,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    loadCatImage();
+    fetchCatImage();
 });

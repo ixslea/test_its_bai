@@ -139,8 +139,7 @@
         }
         
         function applyFilters() {
-            document.getElementById('btnApply').classList.add('.apply-filters');
-            document.getElementById('btnApply').submit();
+            document.getElementById('btnApply').classList.add('hidden');
         }    
 
         function resetFilters() {
@@ -152,8 +151,7 @@
             document.getElementById('top_likes').value = '';
             document.getElementById('top_views').value = '';
             
-            document.getElementById('btnApply').classList.remove('.apply-filters');
-            document.getElementById('btnApply').submit();
+            document.getElementById('btnApply').classList.remove('hidden');
 
         }
     </script>
