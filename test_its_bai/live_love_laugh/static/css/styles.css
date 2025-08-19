@@ -291,13 +291,13 @@ a:hover {
 }
 .filter-panel {
   position: fixed;
-  left: -350px;
+  left: -300px;
   top: 0;
-  width: 350px;
+  width: 280px;
   height: 100vh;
   background: white;
   box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-  padding: 1rem;
+  padding: 2rem;
   transition: left 0.3s ease;
   z-index: 99;
   overflow-y: auto;
