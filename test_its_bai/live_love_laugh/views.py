@@ -84,7 +84,7 @@ def list(request):
         if source_filter:
             quotes = quotes.filter(source__iexact=source_filter)
             
-        quotes = quotes.order_by('-created_at')
+        quotes = quotes.order_by('-create_date')
         show_top = False
         show_top_views = False
     
