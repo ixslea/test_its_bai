@@ -54,7 +54,7 @@
             
             <div class="filter-group">
                 <div class="filter-title">Сортировка</div>
-                <div class="filter-option {% if not show_top %}active{% endif %}" onclick="selectOption(this, 'sort', '')">
+                <div class="filter-option {% if not show_top and not show_top_views %}active{% endif %}" onclick="selectOption(this, 'sort', '')">
                     По дате добавления
                 </div>
                 <div class="filter-option {% if show_top %}active{% endif %}" onclick="selectOption(this, 'top_likes', '1')">
@@ -85,7 +85,7 @@
                 </blockquote>
                 <div class="quote-meta">
                     <span class="quote-source">{{ quote.source }}</span>
-                    <span class="like-count heart-icon ri-heart-3-fill">{{ quote.likes }}</span>
+                    <span class="like-count heart-icon ri-heart-3-fill">{{ quote.total_likes }}</span>
                     <span class="quote-views ri-eye-line"> {{ quote.views }}</span>
                 </div>
             </div>
@@ -118,9 +118,6 @@
             panel.classList.toggle('active');
 
             if (document.getElementById('top_likes').value != '' || document.getElementById('top_views').value != '') {
-                const sortOptions = document.querySelectorAll('.filter-group .filter-option');
-                sortOptions.forEach(opt => opt.classList.remove('active'));
-                sortOptions[0].classList.remove('active');
                 document.getElementById('btnApply').classList.add('hidden');
             }
         }
