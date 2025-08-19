@@ -392,7 +392,6 @@ a:hover {
   background-color: #00C851;
 }
 
-
 .notification {
   padding: 15px 20px;
   margin-bottom: 10px;
@@ -554,8 +553,12 @@ font-size: 0.9rem;
     max-width: 300px;
   }
   
-  .tooltip:before {
-    display: none;
+  .tooltip-trigger:active .tooltip,
+  .tooltip-trigger.show-tooltip .tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+    animation: hideTooltip 0.3s ease-in-out 3s forwards;
   }
   
   .tooltip-content {
@@ -598,6 +601,14 @@ font-size: 0.9rem;
 
   .like-count {
     font-size: 1.5rem; 
+  }
+
+  .quote-views {
+    font-size: 1.5rem; 
+  }
+  
+  .ri-eye-line {
+    font-size: 2rem; 
   }
 
   .quote-actions {
