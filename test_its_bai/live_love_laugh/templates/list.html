@@ -68,7 +68,7 @@
             </div>
             
              <div class="filter-actions">
-                <button type="submit" class="apply-filters">Применить</button>
+                <button type="submit" id="btnApply" class="apply-filters">Применить</button>
                 <button type="button" class="reset-filters" onclick="resetFilters()">Сбросить</button>
             </div>
         </form>
@@ -127,16 +127,22 @@
             
             if (name === 'top_likes') {
                 document.getElementById('top_likes').value = value;
-                sortOptions[0].classList.remove('active');
-            }
-
-            if (name === 'top_views') {
+                document.getElementById('top_views').value = '';
+            } else if (name === 'top_views') {
                 document.getElementById('top_views').value = value;
-                sortOptions[0].classList.remove('active');
+                document.getElementById('top_views').value = '';
+            } else {
+                document.getElementById('top_likes').value = '';
+                document.getElementById('top_views').value = '';
             }
-
+            applyFilters();
         }
         
+        function applyFilters() {
+            document.getElementById('btnApply').classList.add('auto-apply');
+            document.getElementById('btnApply').submit();
+        }    
+
         function resetFilters() {
             document.querySelector('.source-select').value = '';
             
@@ -146,7 +152,9 @@
             document.getElementById('top_likes').value = '';
             document.getElementById('top_views').value = '';
             
-            document.getElementById('filterForm').submit();
+            document.getElementById('btnApply').classList.remove('auto-apply');
+            document.getElementById('btnApply').submit();
+
         }
     </script>
 

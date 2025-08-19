@@ -301,6 +301,7 @@ a:hover {
   transition: left 0.3s ease;
   z-index: 99;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .filter-panel.active {
   left: 0;
@@ -344,6 +345,9 @@ a:hover {
   display: flex;
   gap: 0.5rem;
   margin-top: 1rem;
+}
+.auto-apply .apply-filters {
+    display: none;
 }
 .apply-filters, .reset-filters {
   padding: 0.75rem;
