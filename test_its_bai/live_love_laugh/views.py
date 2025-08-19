@@ -53,12 +53,6 @@ def add(request):
 Передает данные цитат и методы фильтрации
 """
 def list(request):
-    if request.GET.get('top_likes') and request.GET.get('top_views'):
-        params = request.GET.copy()
-        params.pop('top_likes', None)
-        params.pop('top_views', None)
-        return redirect(f"{request.path}?{params.urlencode()}")
-
     source_filter = request.GET.get('source')
     top_likes = request.GET.get('top_likes')
     top_views = request.GET.get('top_views')

@@ -154,7 +154,15 @@
             document.getElementById('top_likes').value = '';
             document.getElementById('top_views').value = '';
             
+            const url = new URL(window.location.href);
+
             document.getElementById('btnApply').classList.remove('hidden');
+            
+            url.searchParams.delete('source');
+            url.searchParams.delete('top_likes');
+            url.searchParams.delete('top_views');
+            
+            window.location.href = url.toString();
 
         }
     </script>

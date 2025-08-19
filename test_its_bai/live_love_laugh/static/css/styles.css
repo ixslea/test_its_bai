@@ -304,7 +304,7 @@ a:hover {
   overflow-x: hidden;
 }
 .source-select{
-  max-width: 250px;
+  max-width: 350px;
 }
 .filter-panel.active {
   left: 0;
