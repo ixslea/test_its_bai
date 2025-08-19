@@ -146,6 +146,10 @@
         }    
 
         function resetFilters() {
+            
+            const baseUrl = window.location.origin + window.location.pathname;
+            window.location.href = baseUrl;
+            /*
             document.querySelector('.source-select').value = '';
             
             const sortOptions = document.querySelectorAll('.filter-group .filter-option');
@@ -153,16 +157,9 @@
             sortOptions[0].classList.add('active');
             document.getElementById('top_likes').value = '';
             document.getElementById('top_views').value = '';
-            
-            const url = new URL(window.location.href);
 
             document.getElementById('btnApply').classList.remove('hidden');
-            
-            url.searchParams.delete('source');
-            url.searchParams.delete('top_likes');
-            url.searchParams.delete('top_views');
-            
-            window.location.href = url.toString();
+            */
 
         }
     </script>
