@@ -56,14 +56,15 @@ def list(request):
     source_filter = request.GET.get('source')
     top_likes = request.GET.get('top_likes')
     top_views = request.GET.get('top_views')
-    
+
     quotes = Quote.objects.all()
     
     if source_filter:
         quotes = quotes.filter(source__iexact=source_filter)
     
     if top_likes:
-        quotes = quotes.order_by('-likes')[:10] 
+        quotes = sorted(quotes.objects, key=lambda t: t.total_likes)[:10] 
+        # quotes = quotes.order_by('-likes')[:10] 
         show_top = True
         show_top_views = False
     elif top_views:
